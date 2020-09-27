@@ -30,8 +30,7 @@ const reducer = (state = [], action) => {
             ...state
       ];
     case type.DELETE_TODO:
-      state.filter(toDo => console.log(toDo));
-      return [...state];
+      return state.filter(toDo => toDo.id !== action.id);
     default:
       return state;
   }
@@ -41,7 +40,7 @@ const store = createStore(reducer);
 
 const dispatchDeleteToDo = e => {
   const id = e.target.parentNode.id;
-  store.dispatch(deleteToDo(id));
+  store.dispatch(deleteToDo(parseInt(id)));
 }
 
 const paintToDos = () => {
