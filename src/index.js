@@ -1,36 +1,88 @@
-import {createStore} from 'redux';
-import {type as COUNT_TYPE} from './countAction';
+import {createStore} from "redux";
+import {type} from './actionType';
 
-const add = document.getElementById("add");
-const minus = document.getElementById("minus");
-const number = document.querySelector("span");
+const input = document.querySelector("input");
+const ul = document.querySelector("ul");
 
-const countModifier = (count = 0,action) => {
-  switch (action.type){
-    case COUNT_TYPE.ADD:
-      return count + 1;
-    case COUNT_TYPE.MINUS:
-      return count - 1;
-    default:
-      return count
+const addToDo = text => {
+  return {
+    type: type.ADD_TODO,
+    text
+  };
+}
+
+
+const deleteToDo = id => {
+  return {
+    type: type.DELETE_TODO,
+    id
   }
+}
+
+
+const reducer = (state = [], action) => {
+  switch (action.type) {
+    case type.ADD_TODO:
+      return [{
+              id : Date.now(),//javascript date
+              text: action.text
+            },
+            ...state
+      ];
+    case type.DELETE_TODO:
+      state.filter(toDo => console.log(toDo));
+      return [...state];
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer);
+
+const dispatchDeleteToDo = e => {
+  const id = e.target.parentNode.id;
+  store.dispatch(deleteToDo(id));
+}
+
+const paintToDos = () => {
+  
+  let toDos = store.getState();
+
+  ul.innerHTML = "";
+
+  toDos.forEach(toDo => {
+    const li = document.createElement("li");
+    
+    const btn = document.createElement("button");
+    btn.innerText = "DEL";
+    btn.type = "button";
+    btn.addEventListener("click", dispatchDeleteToDo);
+    
+    li.id = toDo.id;
+    li.innerText = toDo.text;
+    li.appendChild(btn);
+
+
+    ul.appendChild(li);
+  })
+
+  
+}
+
+
+store.subscribe(paintToDos);
+
+const dispatchAddToDo = text => {
+  store.dispatch(addToDo(text));
+}
+
+
+const onSubmit = e => {
+  e.preventDefault();
+  const toDo = input.value;
+  input.value = "";
+  dispatchAddToDo(toDo);
 };
 
-const countStore = createStore(countModifier);
+document.addEventListener("submit",onSubmit)
 
-const onChange = (v) => {
-  number.innerHTML = countStore.getState();
-}
-
-countStore.subscribe(onChange);
-
-const handleAdd = () => {
-  countStore.dispatch({type:COUNT_TYPE.ADD});
-}
-
-const handleMinus = () => {
-  countStore.dispatch({type:COUNT_TYPE.MINUS});
-}
-
-add.addEventListener("click", handleAdd);
-minus.addEventListener("click", handleMinus);
