@@ -1,10 +1,22 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import ToDo from '../components/ToDo';
 import {actionCreators} from '../store';
 
-function Home({toDos, addToDo}) {
+function Home({toDos, addToDo,initToDo}) {
     const [text,setText] = useState("");
+
+    useEffect(() => {
+        for(let i=0;i<localStorage.length;i++){
+            let key = localStorage.key(i)
+            initToDo({
+                text : localStorage.getItem(key),
+                id : key
+            });
+        }
+    }, [])
+
+
     function onChange(e){
         setText(e.target.value);
     }
@@ -38,7 +50,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        addToDo: text => dispatch(actionCreators.addToDo(text))
+        addToDo: text => dispatch(actionCreators.addToDo(text)),
+        initToDo: toDo => dispatch(actionCreators.initToDo(toDo))
     };
 }
 
