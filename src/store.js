@@ -1,4 +1,4 @@
-import {createSotre, createStore} from "redux";
+import {createStore} from "redux";
 import {type} from "./config/actionType";
 
 const addToDo = text => {
@@ -18,6 +18,7 @@ const deleteToDo = id => {
 const reducer = (state = [], action) => {
     switch(action.type){
         case type.ADD_TODO:
+            console.log("reducer")
             return [
                 {
                     text: action.text,
