@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
+import {addToDo} from '../store';
 
 function Home({toDos}) {
     const [text,setText] = useState("");
@@ -21,7 +22,7 @@ function Home({toDos}) {
                 <button>ADD</button>
             </form>
             <ul>
-
+                {JSON.stringify(toDos)}
             </ul>
         </>
     )
@@ -31,4 +32,10 @@ function mapStateToProps(state){
     return {toDos: state};
 }
 
-export default connect(mapStateToProps)(Home);
+function mapDispatchToProps(dispatch){
+    return {
+        dispatchAddToDo
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Home);
