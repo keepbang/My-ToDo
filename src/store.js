@@ -1,30 +1,14 @@
 import {createStore} from "redux";
-import {type} from "./config/actionType";
+import {createAction} from "@reduxjs/toolkit";
 
-const addToDo = text => {
-    return {
-        type: type.ADD_TODO,
-        text
-    }
-}
+const addToDo = createAction("ADD");
+const deleteToDo = createAction("DELETE");
 
-const deleteToDo = id => {
-    return {
-        type: type.DELETE_TODO,
-        id
-    }
-}
-
-const initToDo = toDo => {
-    return {
-        type:type.INIT_TODO,
-        toDo
-    }
-}
+const initToDo = createAction("INIT");
 
 const reducer = (state = [], action) => {
     switch(action.type){
-        case type.ADD_TODO:
+        case addToDo.type:
             const id = Date.now();
             const text = action.text;
             localStorage.setItem(id,text);
@@ -35,10 +19,10 @@ const reducer = (state = [], action) => {
                 },
                 ...state
             ];
-        case type.DELETE_TODO:
+        case deleteToDo.type:
             localStorage.removeItem(action.id);
             return state.filter(toDo => toDo.id !== action.id);
-        case type.INIT_TODO:
+        case initToDo.type:
             return [
                 action.toDo,
                 ...state
