@@ -10,8 +10,7 @@ const reducer = (state = [], action) => {
     switch(action.type){
         case addToDo.type:
             const id = Date.now();
-            const text = action.text;
-            localStorage.setItem(id,text);
+            const text = action.payload;
             return [
                 {
                     text: text,
@@ -20,8 +19,7 @@ const reducer = (state = [], action) => {
                 ...state
             ];
         case deleteToDo.type:
-            localStorage.removeItem(action.id);
-            return state.filter(toDo => toDo.id !== action.id);
+            return state.filter(toDo => toDo.id !== action.payload);
         case initToDo.type:
             return [
                 action.toDo,
