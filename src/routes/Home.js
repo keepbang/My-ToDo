@@ -13,7 +13,6 @@ function Home({toDos, addToDo}) {
 
     function onSubmit(e){
         e.preventDefault();
-        console.log(text);
         if(text === ""){
             alert("아무것도 입력하지 않았습니다.");
         }else{
