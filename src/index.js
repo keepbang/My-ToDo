@@ -5,6 +5,11 @@ import App from './components/App';
 import {Provider} from 'react-redux';
 import store from './store';
 
+import './css/index.css';
+
+import "@blueprintjs/core/lib/css/blueprint.css";
+import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+
 
 ReactDom.render(
     <Provider store={store}>

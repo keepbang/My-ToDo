@@ -1,3 +1,4 @@
+import { Position } from "@blueprintjs/core";
 import {configureStore, createSlice} from "@reduxjs/toolkit";
 
 const storageKey = "Keepbang.ToDo.Storage";
@@ -8,11 +9,24 @@ const initState = () => {
 
 const toDos = createSlice({
     name: 'toDoReducer',
-    initialState: initState(),
+    initialState: {
+        ToDoList: initState(),
+        drawState: {
+            autoFocus: true,
+            canEscapeKeyClose: true,
+            canOutsideClickClose: true,
+            enforceFocus: true,
+            hasBackdrop: true,
+            isOpen: false,
+            position: Position.RIGHT,
+            size: undefined,
+            usePortal: true,
+        }
+    },
     reducers: {
-        add: (state, action) => {
+        add: ({ToDoList}, action) => {
             let stateItem = { text: action.payload, id: Date.now()};
-            state.unshift(stateItem);
+            ToDoList.unshift(stateItem);
             let tmpObj = localStorage.getItem(storageKey);
             if(tmpObj === null){
                 tmpObj = [];
@@ -24,12 +38,15 @@ const toDos = createSlice({
                 localStorage.setItem(storageKey,JSON.stringify(arrObj));
             }
         },
-        remove: (state, action) => {
+        remove: ({ToDoList}, action) => {
             let arrObj = JSON.parse(localStorage.getItem(storageKey));
             arrObj = arrObj.filter(obj => obj.id !== action.payload);
             localStorage.setItem(storageKey,JSON.stringify(arrObj));
 
-            return state.filter(toDo => toDo.id !== action.payload);
+            return {ToDoList : ToDoList.filter(toDo => toDo.id !== action.payload)};
+        },
+        setDrawState: ({drawState},action) => {
+            return {drawState: action.payload}
         }
     }
 });
