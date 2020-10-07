@@ -1,31 +1,14 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ToDo from '../components/ToDo';
 import '../css/Home.scss';
-import { add } from '../store';
+import { setDraw } from '../store';
 
 import AddBtn from '../components/AddBtn';
 import FormArea from '../components/FormArea';
 import { Classes, Drawer } from '@blueprintjs/core';
 
-function Home({toDos, addToDo, setDrawState}) {
-    console.log(setDrawState);
-    const [text,setText] = useState("");
-    
-
-    function onChange(e){
-        setText(e.target.value);
-    }
-
-    function onSubmit(e){
-        e.preventDefault();
-        if(text === ""){
-            alert("아무것도 입력하지 않았습니다.");
-        }else{
-            addToDo(text);
-            setText("");
-        }
-    }
+function Home({toDos, drawState, addToDo, setDrawState}) {
 
     const handleClose = () => {setDrawState({isOpen:false})};
     const handleOpen = () => {setDrawState({isOpen:true})};
@@ -33,40 +16,39 @@ function Home({toDos, addToDo, setDrawState}) {
     return (
         <>
             <h2 className="home_title">ToDo</h2>
-            {/* <Drawer
-                icon="info-sign"
+            <Drawer
+                icon="edit"
                 onClose={handleClose}
                 title="Add ToDo"
+                {...drawState}
             >
                 <div className={Classes.DRAWER_BODY}>
                     <div className={Classes.DIALOG_BODY}>
-                        test
+                        <FormArea closeFunc={handleClose}/>
                     </div>
                 </div>
 
-            </Drawer> */}
-                <form onSubmit={onSubmit}>
-                    <input className="input__box" onChange={onChange} type="text" placeholder="Write ToDo..." value={text}/>
-                    <button className="input__btn">ADD</button>
-                </form>
+            </Drawer>
             <ul>
                 {
                     toDos.map(toDo => <ToDo key={toDo.id} {...toDo}/>)
                 }
             </ul>
-            <AddBtn onClick={handleOpen}/>
+            <AddBtn eventProps={handleOpen}/>
         </>
     )
 }
 
 function mapStateToProps(state){
-    console.log(state);
-    return {toDos: state.ToDoList};
+    return {
+        toDos: state.ToDoList,
+        drawState: state.drawState
+    };
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        addToDo: text => dispatch(add(text)),
+        setDrawState: options => dispatch(setDraw(options))
     };
 }
 

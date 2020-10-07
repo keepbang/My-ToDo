@@ -18,7 +18,7 @@ const toDos = createSlice({
             enforceFocus: true,
             hasBackdrop: true,
             isOpen: false,
-            position: Position.RIGHT,
+            position: Position.BOTTOM,
             size: undefined,
             usePortal: true,
         }
@@ -38,22 +38,23 @@ const toDos = createSlice({
                 localStorage.setItem(storageKey,JSON.stringify(arrObj));
             }
         },
-        remove: ({ToDoList}, action) => {
+        remove: (state, action) => {
             let arrObj = JSON.parse(localStorage.getItem(storageKey));
             arrObj = arrObj.filter(obj => obj.id !== action.payload);
             localStorage.setItem(storageKey,JSON.stringify(arrObj));
 
-            return {ToDoList : ToDoList.filter(toDo => toDo.id !== action.payload)};
+            return {...state,ToDoList : state.ToDoList.filter(toDo => toDo.id !== action.payload)};
         },
-        setDrawState: ({drawState},action) => {
-            return {drawState: action.payload}
+        setDraw: (state,action) => {
+            return {...state,drawState: {...state.drawState,...action.payload}}
         }
     }
 });
 
 export const {
     add,
-    remove
+    remove,
+    setDraw
 } = toDos.actions
 
 export default configureStore({reducer: toDos.reducer});
