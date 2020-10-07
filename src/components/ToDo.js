@@ -1,15 +1,19 @@
+import { Button } from '@blueprintjs/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { remove } from '../store';
+import '../css/ToDo.scss';
 
-function ToDo({text,id, onDeleteBtn}) {
+function ToDo({text,id,title, onDeleteBtn}) {
     return(
-        <li id={id}>
+        <li id={id} className="todo__li">
             <Link to={`/${id}`}>
-                {text} 
+                <div className="todo___text">{title}</div>
             </Link>
-            <button onClick={onDeleteBtn}>DEL</button>
+            <div className="btn__area">
+                <Button onClick={onDeleteBtn} fill={true} className="del___btn" icon="trash" intent="danger"/>
+            </div>
         </li>
     )
 }

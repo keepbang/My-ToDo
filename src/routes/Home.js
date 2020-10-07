@@ -29,7 +29,7 @@ function Home({toDos, drawState, addToDo, setDrawState}) {
                 </div>
 
             </Drawer>
-            <ul>
+            <ul className="todo_ul">
                 {
                     toDos.map(toDo => <ToDo key={toDo.id} {...toDo}/>)
                 }

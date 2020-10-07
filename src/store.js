@@ -24,8 +24,8 @@ const toDos = createSlice({
         }
     },
     reducers: {
-        add: ({ToDoList}, action) => {
-            let stateItem = { text: action.payload, id: Date.now()};
+        add: ({ToDoList}, {payload}) => {
+            let stateItem = {title: payload.title, text: payload.text, id: Date.now()};
             ToDoList.unshift(stateItem);
             let tmpObj = localStorage.getItem(storageKey);
             if(tmpObj === null){
