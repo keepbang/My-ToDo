@@ -6,9 +6,9 @@ import { setDraw } from '../store';
 
 import AddBtn from '../components/AddBtn';
 import FormArea from '../components/FormArea';
-import { Classes, Drawer } from '@blueprintjs/core';
+import { Button, Classes, Drawer } from '@blueprintjs/core';
 
-function Home({toDos, drawState, addToDo, setDrawState}) {
+function Home({toDos, drawState, setDrawState}) {
 
     const handleClose = () => {setDrawState({isOpen:false})};
     const handleOpen = () => {setDrawState({isOpen:true})};
@@ -29,11 +29,17 @@ function Home({toDos, drawState, addToDo, setDrawState}) {
                 </div>
 
             </Drawer>
-            <ul className="todo_ul">
-                {
-                    toDos.map(toDo => <ToDo key={toDo.id} {...toDo}/>)
+            {toDos.length === 0?
+                    <div className="empty_page">
+                        <Button onClick={handleOpen} icon="plus" intent="success" text="Add frist To-Do" large="true"/>
+                    </div>:
+                    <ul className="todo_ul">
+                    {
+                        toDos.map(toDo => <ToDo key={toDo.id} {...toDo}/>)
+                    }
+                </ul>
                 }
-            </ul>
+            
             <AddBtn eventProps={handleOpen}/>
         </>
     )
