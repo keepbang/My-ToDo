@@ -1,9 +1,12 @@
-import { Button, Checkbox } from '@blueprintjs/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from "classnames";
+
 import { remove,check } from '../store';
+
 import '../css/ToDo.scss';
+import { Button, Checkbox } from '@blueprintjs/core';
 
 function ToDo({id,title,checked, onDeleteBtn, onChecked}) {
 
@@ -11,11 +14,16 @@ function ToDo({id,title,checked, onDeleteBtn, onChecked}) {
         onChecked({id,checked:e.target.checked})
     }
 
+    const titleClass = classNames(
+        'todo___text',
+        (checked?'disabled':'enabled')
+    )
+
     return(
         <li id={id} className="todo__li">
             <Checkbox className="todo___check" checked={(typeof checked === "undefined"?false:checked)} onChange={onChangeHandler} large={true}/>
-                <Link to={`/${id}`}>
-                    <div className="todo___text">{title}</div>
+                <Link to={checked?`/#`:`/${id}`}>
+                    <div className={titleClass}>{title}</div>
                 </Link>
             <div className="btn__area">
                 <Button onClick={onDeleteBtn} fill={true} className="del___btn" icon="trash" intent="danger"/>
