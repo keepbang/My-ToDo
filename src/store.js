@@ -38,6 +38,13 @@ const toDos = createSlice({
                 localStorage.setItem(storageKey,JSON.stringify(arrObj));
             }
         },
+        update: (state, {payload}) => {
+            console.log(payload);
+            let stateItem = {title: payload.title, text: payload.text, id: payload.id};
+            let updateToDo = state.ToDoList.map(toDo => (toDo.id === stateItem.id?stateItem:toDo));
+            localStorage.setItem(storageKey,JSON.stringify(updateToDo));
+            return {...state,ToDoList : updateToDo}
+        },
         remove: (state, action) => {
             let arrObj = JSON.parse(localStorage.getItem(storageKey));
             arrObj = arrObj.filter(obj => obj.id !== action.payload);
@@ -53,6 +60,7 @@ const toDos = createSlice({
 
 export const {
     add,
+    update,
     remove,
     setDraw
 } = toDos.actions

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { remove } from '../store';
 import '../css/ToDo.scss';
 
-function ToDo({text,id,title, onDeleteBtn}) {
+function ToDo({id,title, onDeleteBtn}) {
     return(
         <li id={id} className="todo__li">
             <Link to={`/${id}`}>

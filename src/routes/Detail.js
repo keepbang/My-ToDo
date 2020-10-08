@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FormArea from '../components/FormArea';
+import Header from '../components/Header';
 
 function Detail({toDo}) {
+
     return (
             <>
-                <h1>
-                    title : {toDo?.title}
-                </h1>
-                <h3>
-                    text : {toDo?.text}
-                </h3>
-                <h3>
-                    Create at : {toDo?.id}
-                </h3>
+            <Header id={toDo.id}/>
+            <div style={{
+                padding:"100px 20px 0px 20px"
+            }}>
+                <FormArea toDo={toDo} type="update"/>
+            </div>
             </>
     )
 }

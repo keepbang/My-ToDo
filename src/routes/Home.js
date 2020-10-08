@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ToDo from '../components/ToDo';
-import '../css/Home.scss';
 import { setDraw } from '../store';
+import '../css/Home.scss';
 
 import AddBtn from '../components/AddBtn';
 import FormArea from '../components/FormArea';
+import Header from '../components/Header';
+import ToDo from '../components/ToDo';
+
 import { Button, Classes, Drawer } from '@blueprintjs/core';
 
 function Home({toDos, drawState, setDrawState}) {
@@ -15,9 +17,9 @@ function Home({toDos, drawState, setDrawState}) {
 
     return (
         <>
-            <h2 className="home_title">ToDo</h2>
+            <Header/>
             <Drawer
-                icon="edit"
+                icon="annotation"
                 onClose={handleClose}
                 title="Add ToDo"
                 {...drawState}
