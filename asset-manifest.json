@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/My-ToDo/static/css/main.d1579ac6.chunk.css",
-    "main.js": "/My-ToDo/static/js/main.0d3b805e.chunk.js",
-    "main.js.map": "/My-ToDo/static/js/main.0d3b805e.chunk.js.map",
+    "main.css": "/My-ToDo/static/css/main.ed928e1d.chunk.css",
+    "main.js": "/My-ToDo/static/js/main.0d14b169.chunk.js",
+    "main.js.map": "/My-ToDo/static/js/main.0d14b169.chunk.js.map",
     "runtime-main.js": "/My-ToDo/static/js/runtime-main.bf75ec9d.js",
     "runtime-main.js.map": "/My-ToDo/static/js/runtime-main.bf75ec9d.js.map",
-    "static/css/2.6d8833d1.chunk.css": "/My-ToDo/static/css/2.6d8833d1.chunk.css",
-    "static/js/2.5769d12f.chunk.js": "/My-ToDo/static/js/2.5769d12f.chunk.js",
-    "static/js/2.5769d12f.chunk.js.map": "/My-ToDo/static/js/2.5769d12f.chunk.js.map",
+    "static/css/2.896dd1a3.chunk.css": "/My-ToDo/static/css/2.896dd1a3.chunk.css",
+    "static/js/2.fdee4197.chunk.js": "/My-ToDo/static/js/2.fdee4197.chunk.js",
+    "static/js/2.fdee4197.chunk.js.map": "/My-ToDo/static/js/2.fdee4197.chunk.js.map",
     "index.html": "/My-ToDo/index.html",
-    "precache-manifest.ce8a8ca3f5086a2d218ea0636c7d1d0a.js": "/My-ToDo/precache-manifest.ce8a8ca3f5086a2d218ea0636c7d1d0a.js",
+    "precache-manifest.f3d94aa60931f1bab53270a9c1259928.js": "/My-ToDo/precache-manifest.f3d94aa60931f1bab53270a9c1259928.js",
     "service-worker.js": "/My-ToDo/service-worker.js",
-    "static/css/2.6d8833d1.chunk.css.map": "/My-ToDo/static/css/2.6d8833d1.chunk.css.map",
-    "static/css/main.d1579ac6.chunk.css.map": "/My-ToDo/static/css/main.d1579ac6.chunk.css.map",
-    "static/js/2.5769d12f.chunk.js.LICENSE.txt": "/My-ToDo/static/js/2.5769d12f.chunk.js.LICENSE.txt",
+    "static/css/2.896dd1a3.chunk.css.map": "/My-ToDo/static/css/2.896dd1a3.chunk.css.map",
+    "static/css/main.ed928e1d.chunk.css.map": "/My-ToDo/static/css/main.ed928e1d.chunk.css.map",
+    "static/js/2.fdee4197.chunk.js.LICENSE.txt": "/My-ToDo/static/js/2.fdee4197.chunk.js.LICENSE.txt",
     "static/media/blueprint-icons.css": "/My-ToDo/static/media/icons-20.cef8cdbb.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.bf75ec9d.js",
-    "static/css/2.6d8833d1.chunk.css",
-    "static/js/2.5769d12f.chunk.js",
-    "static/css/main.d1579ac6.chunk.css",
-    "static/js/main.0d3b805e.chunk.js"
+    "static/css/2.896dd1a3.chunk.css",
+    "static/js/2.fdee4197.chunk.js",
+    "static/css/main.ed928e1d.chunk.css",
+    "static/js/main.0d14b169.chunk.js"
   ]
 }
