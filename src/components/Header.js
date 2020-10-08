@@ -32,6 +32,7 @@ const Header = ({date, id,setChangeDate}) => {
                 placeholder={"YYYY-MM-DD"}
                 value={new Date(date)}
                 popoverProps={{ position: Position.BOTTOM_LEFT }}
+                disabled={id?true:false}
                 />
         </h2>
     </>

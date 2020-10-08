@@ -61,8 +61,8 @@ const toDos = createSlice({
         setDraw: (state,action) => {
             return {...state,drawState: {...state.drawState,...action.payload}}
         },
-        setDate: ({date},action) => {
-            date = action.payload;
+        setDate: (state,action) => {
+            return {...state, date: action.payload}
         }
     }
 });

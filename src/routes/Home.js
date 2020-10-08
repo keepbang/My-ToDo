@@ -8,6 +8,8 @@ import FormArea from '../components/FormArea';
 import Header from '../components/Header';
 import ToDo from '../components/ToDo';
 
+import {dataToString} from '../common/dateToString';
+
 import { Button, Classes, Drawer } from '@blueprintjs/core';
 
 function Home({toDos, drawState, setDrawState}) {
@@ -37,7 +39,9 @@ function Home({toDos, drawState, setDrawState}) {
                     </div>:
                     <ul className="todo_ul">
                     {
-                        toDos.map(toDo => <ToDo key={toDo.id} {...toDo}/>)
+                        toDos.map(
+                            toDo => <ToDo key={toDo.id} {...toDo}/> 
+                        )
                     }
                 </ul>
                 }
@@ -48,8 +52,11 @@ function Home({toDos, drawState, setDrawState}) {
 }
 
 function mapStateToProps(state){
+
+    const sendToDo = state.ToDoList.filter(toDo => state.date === dataToString(new Date(parseInt(toDo.id))));
+
     return {
-        toDos: state.ToDoList,
+        toDos: sendToDo,
         drawState: state.drawState
     };
 }
