@@ -1,8 +1,11 @@
-# Redux Practice
+# My To-Do App
 
-Learning Redux Technology
+Learning React,Redux Technology
 
 ### `Used Tech`
 - Vanilla JS
 - React JS
 - Redux
+- scss
+- blueprintjs
+- redux-toolkit
