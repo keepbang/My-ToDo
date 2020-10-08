@@ -1,4 +1,4 @@
-import { Position } from "@blueprintjs/core";
+import { Drawer, Position } from "@blueprintjs/core";
 import {configureStore, createSlice} from "@reduxjs/toolkit";
 
 const storageKey = "Keepbang.ToDo.Storage";
@@ -19,7 +19,7 @@ const toDos = createSlice({
             hasBackdrop: true,
             isOpen: false,
             position: Position.BOTTOM,
-            size: undefined,
+            size: Drawer.SIZE_LARGE,
             usePortal: true,
         }
     },

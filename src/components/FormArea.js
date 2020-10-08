@@ -1,4 +1,4 @@
-import { Button, EditableText, H3 } from '@blueprintjs/core';
+import { Button, Divider, EditableText, H3 } from '@blueprintjs/core';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { add, update } from '../store';
@@ -55,16 +55,18 @@ const FormArea = ({addToDo,updateToDo, closeFunc, toDo, type}) => {
                     onChange={onChangeTitle}
                 />
             </H3>
+            <Divider />
             <EditableText
                     alwaysRenderInput={true}
                     intent={INTENT_PRIMARY}
-                    maxLines={5}
-                    minLines={5}
+                    maxLines={12}
+                    minLines={7}
                     multiline={true}
                     placeholder="Write ToDo..."
                     onChange={onChangeText}
                     value={text}
                 />
+            <Divider />
             <div className="add_btn_area">
                 <Button
                     className="add__btn"
