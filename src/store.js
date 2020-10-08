@@ -1,5 +1,6 @@
 import { Drawer, Position } from "@blueprintjs/core";
 import {configureStore, createSlice} from "@reduxjs/toolkit";
+import {dataToString} from './common/dateToString';
 
 const storageKey = "Keepbang.ToDo.Storage";
 
@@ -10,6 +11,7 @@ const initState = () => {
 const toDos = createSlice({
     name: 'toDoReducer',
     initialState: {
+        date : dataToString(new Date()),
         ToDoList: initState(),
         drawState: {
             autoFocus: true,
@@ -58,6 +60,9 @@ const toDos = createSlice({
         },
         setDraw: (state,action) => {
             return {...state,drawState: {...state.drawState,...action.payload}}
+        },
+        setDate: ({date},action) => {
+            date = action.payload;
         }
     }
 });
@@ -67,7 +72,8 @@ export const {
     update,
     remove,
     check,
-    setDraw
+    setDraw,
+    setDate
 } = toDos.actions
 
 export default configureStore({reducer: toDos.reducer});

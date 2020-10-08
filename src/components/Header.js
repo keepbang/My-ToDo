@@ -1,29 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import '../css/Header.scss';
+import { Position } from '@blueprintjs/core';
+import { DateInput } from '@blueprintjs/datetime';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const Header = ({id}) => {
-    const [title, setTitle] = useState("");
+import {dataToString} from '../common/dateToString';
+
+import '../css/Header.scss';
+import { setDate } from '../store';
+
+
+const Header = ({date, id,setChangeDate}) => {
 
     useEffect(() => {
         if(typeof id !== "undefined"){
-            setTitle(setTitleDate(id));
-        }else{
-            setTitle(setTitleDate(Date.now()));
+            setChangeDate(dataToString(new Date(parseInt(id))));
         }
-    }, [id])
+    }, [setChangeDate,id])
 
-    const setTitleDate = (id) => {
-        let date = new Date(parseInt(id));
-        let formatDate = date.getFullYear() + "-" + 
-                        String(date.getMonth() + 1).padStart(2,'0') + "-" + 
-                        String(date.getDate()).padStart(2,'0');
-
-        return formatDate;
+    const handleDateChange = (e) => {
+        setChangeDate(dataToString(e));
     }
 
+
     return <>
-        <h2 className="home_title">{title}</h2>
+        <h2 className="home_title">
+            <DateInput
+                className="home__date"
+                formatDate={date => date.toLocaleString("ko-KR",{year: "numeric",month:"2-digit",day:"2-digit"})}
+                onChange={handleDateChange}
+                parseDate={str => new Date(str)}
+                placeholder={"YYYY-MM-DD"}
+                value={new Date(date)}
+                popoverProps={{ position: Position.BOTTOM_LEFT }}
+                />
+        </h2>
     </>
 }
 
-export default Header;
+function mapStateToProps(state){
+    return {
+        date: state.date
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        setChangeDate: d => dispatch(setDate(d))
+    };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
