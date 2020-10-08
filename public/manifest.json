@@ -1,6 +1,6 @@
 {
   "short_name": "ToDo App",
-  "name": "Copyrightⓒ 2020.keepbang.All rights reserved.",
+  "name": "Copyright 2020.keepbang.\nAll rights reserved.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "to-do-list512.png",
+      "src": "to-do-list192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#F39C12",
   "background_color": "#ffffff"
 }
