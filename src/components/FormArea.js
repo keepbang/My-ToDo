@@ -58,8 +58,8 @@ const FormArea = ({addToDo,updateToDo, closeFunc, toDo, type}) => {
             <EditableText
                     alwaysRenderInput={true}
                     intent={INTENT_PRIMARY}
-                    maxLines={12}
-                    minLines={3}
+                    maxLines={5}
+                    minLines={5}
                     multiline={true}
                     placeholder="Write ToDo..."
                     onChange={onChangeText}

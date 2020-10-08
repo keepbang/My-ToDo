@@ -25,7 +25,7 @@ const toDos = createSlice({
     },
     reducers: {
         add: ({ToDoList}, {payload}) => {
-            let stateItem = {title: payload.title, text: payload.text, id: Date.now()};
+            let stateItem = {title: payload.title, text: payload.text, id: Date.now(), checked: false};
             ToDoList.unshift(stateItem);
             let tmpObj = localStorage.getItem(storageKey);
             if(tmpObj === null){
@@ -39,8 +39,7 @@ const toDos = createSlice({
             }
         },
         update: (state, {payload}) => {
-            console.log(payload);
-            let stateItem = {title: payload.title, text: payload.text, id: payload.id};
+            let stateItem = {title: payload.title, text: payload.text, id: payload.id, checked: false};
             let updateToDo = state.ToDoList.map(toDo => (toDo.id === stateItem.id?stateItem:toDo));
             localStorage.setItem(storageKey,JSON.stringify(updateToDo));
             return {...state,ToDoList : updateToDo}
@@ -52,6 +51,11 @@ const toDos = createSlice({
 
             return {...state,ToDoList : state.ToDoList.filter(toDo => toDo.id !== action.payload)};
         },
+        check: (state, {payload}) => {
+            let updateToDo = state.ToDoList.map(toDo => (toDo.id === payload.id?{...toDo,checked:payload.checked}:toDo));
+            localStorage.setItem(storageKey,JSON.stringify(updateToDo));
+            return {...state,ToDoList : updateToDo}
+        },
         setDraw: (state,action) => {
             return {...state,drawState: {...state.drawState,...action.payload}}
         }
@@ -62,6 +66,7 @@ export const {
     add,
     update,
     remove,
+    check,
     setDraw
 } = toDos.actions
 
