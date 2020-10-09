@@ -1,6 +1,6 @@
 import { Drawer, Position } from "@blueprintjs/core";
 import {configureStore, createSlice} from "@reduxjs/toolkit";
-import {dataToString} from './common/dateToString';
+import {dateToString} from './common/dateToString';
 
 const storageKey = "Keepbang.ToDo.Storage";
 
@@ -11,7 +11,7 @@ const initState = () => {
 const toDos = createSlice({
     name: 'toDoReducer',
     initialState: {
-        date : dataToString(new Date()),
+        date : dateToString(new Date()),
         ToDoList: initState(),
         drawState: {
             autoFocus: true,
@@ -26,8 +26,8 @@ const toDos = createSlice({
         }
     },
     reducers: {
-        add: ({ToDoList}, {payload}) => {
-            let stateItem = {title: payload.title, text: payload.text, id: Date.now(), checked: false};
+        add: ({date,ToDoList}, {payload}) => {
+            let stateItem = {title: payload.title, text: payload.text, id: new Date(date.substr(0,11)+dateToString(new Date()).substr(11)).getTime(), checked: false};
             ToDoList.unshift(stateItem);
             let tmpObj = localStorage.getItem(storageKey);
             if(tmpObj === null){
@@ -63,6 +63,11 @@ const toDos = createSlice({
         },
         setDate: (state,action) => {
             return {...state, date: action.payload}
+        },
+        toDoRefresh: (state, action) => {
+            let filterData = state.ToDoList.filter(toDo => new Date(state.date.substr(0,11) + "00:00:00") < new Date(parseInt(toDo.id)));
+            localStorage.setItem(storageKey, JSON.stringify(filterData));
+            return {...state, ToDoList: filterData}
         }
     }
 });
@@ -73,7 +78,8 @@ export const {
     remove,
     check,
     setDraw,
-    setDate
+    setDate,
+    toDoRefresh
 } = toDos.actions
 
 export default configureStore({reducer: toDos.reducer});

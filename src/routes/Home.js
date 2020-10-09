@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setDraw } from '../store';
+import { setDraw, toDoRefresh } from '../store';
 import '../css/Home.scss';
 
 import AddBtn from '../components/AddBtn';
@@ -8,11 +8,15 @@ import FormArea from '../components/FormArea';
 import Header from '../components/Header';
 import ToDo from '../components/ToDo';
 
-import {dataToString} from '../common/dateToString';
+import {dateToString} from '../common/dateToString';
 
 import { Button, Classes, Drawer } from '@blueprintjs/core';
 
-function Home({toDos, drawState, setDrawState}) {
+function Home({toDos, drawState, setDrawState, onToDoRefresh}) {
+
+    useEffect(() => {
+        onToDoRefresh();
+    }, [onToDoRefresh])
 
     const handleClose = () => {setDrawState({isOpen:false})};
     const handleOpen = () => {setDrawState({isOpen:true})};
@@ -53,7 +57,7 @@ function Home({toDos, drawState, setDrawState}) {
 
 function mapStateToProps(state){
 
-    const sendToDo = state.ToDoList.filter(toDo => state.date === dataToString(new Date(parseInt(toDo.id))));
+    const sendToDo = state.ToDoList.filter(toDo => state.date.substr(0,10) === dateToString(new Date(parseInt(toDo.id))).substr(0,10));
 
     return {
         toDos: sendToDo,
@@ -63,7 +67,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        setDrawState: options => dispatch(setDraw(options))
+        setDrawState: options => dispatch(setDraw(options)),
+        onToDoRefresh: () => dispatch(toDoRefresh())
     };
 }
 

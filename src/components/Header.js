@@ -3,7 +3,7 @@ import { DateInput } from '@blueprintjs/datetime';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import {dataToString} from '../common/dateToString';
+import {dateToString} from '../common/dateToString';
 
 import '../css/Header.scss';
 import { setDate } from '../store';
@@ -13,12 +13,12 @@ const Header = ({date, id,setChangeDate}) => {
 
     useEffect(() => {
         if(typeof id !== "undefined"){
-            setChangeDate(dataToString(new Date(parseInt(id))));
+            setChangeDate(dateToString(new Date(parseInt(id))));
         }
     }, [setChangeDate,id])
 
     const handleDateChange = (e) => {
-        setChangeDate(dataToString(e));
+        setChangeDate(dateToString(e));
     }
 
 
@@ -33,6 +33,7 @@ const Header = ({date, id,setChangeDate}) => {
                 value={new Date(date)}
                 popoverProps={{ position: Position.BOTTOM_LEFT }}
                 disabled={id?true:false}
+                minDate={new Date()}
                 />
         </h2>
     </>
