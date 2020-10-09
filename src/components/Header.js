@@ -30,7 +30,7 @@ const Header = ({date, id,setChangeDate}) => {
                 onChange={handleDateChange}
                 parseDate={str => new Date(str)}
                 placeholder={"YYYY-MM-DD"}
-                value={new Date(date)}
+                value={new Date(date.replace(' ','T'))}
                 popoverProps={{ position: Position.BOTTOM_LEFT }}
                 disabled={id?true:false}
                 minDate={new Date()}
