@@ -5,7 +5,7 @@ import {dateToString} from './common/dateToString';
 const storageKey = "Keepbang.ToDo.Storage";
 
 const initState = () => {
-    return JSON.parse(localStorage.getItem(storageKey))?JSON.parse(localStorage.getItem(storageKey)):[];
+    return JSON.parse(localStorage.getItem(storageKey))||[];
 }
 
 const toDos = createSlice({
@@ -62,11 +62,10 @@ const toDos = createSlice({
             return {...state,drawState: {...state.drawState,...action.payload}}
         },
         setDate: (state,action) => {
-            console.log(action);
             return {...state, date: action.payload}
         },
         toDoRefresh: (state, action) => {
-            let filterData = state.ToDoList.filter(toDo => new Date(state.date.substr(0,11) + "00:00:00") < new Date(parseInt(toDo.id)));
+            let filterData = state.ToDoList.filter(toDo => new Date(state.date.substr(0,10) + "T00:00:00") < new Date(parseInt(toDo.id)));
             localStorage.setItem(storageKey, JSON.stringify(filterData));
             return {...state, ToDoList: filterData}
         }
