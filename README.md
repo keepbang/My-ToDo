@@ -2,10 +2,11 @@
 
 Learning React,Redux Technology
 
-### `Used Tech`
-- Vanilla JS
-- React JS
+## Used Tech
+- React(react-router-dom)
 - Redux
+- redux-toolkit
 - scss
 - blueprintjs
-- redux-toolkit
+
+
