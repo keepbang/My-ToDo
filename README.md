@@ -16,7 +16,7 @@ Learning React,Redux Technology
 
 ## Screenshots 📸
 
-### ToDo List
+### 일별 ToDo List 관리
 <img src="https://user-images.githubusercontent.com/38740455/96134136-277baf80-0f36-11eb-99d4-8b93a2d3e84d.jpg" width="30%"/>
 
 ### ToDo 추가/수정/삭제
@@ -30,5 +30,3 @@ Learning React,Redux Technology
 ### 달력 선택
 <img src="https://user-images.githubusercontent.com/38740455/96134454-3b271600-0f36-11eb-9d8f-da4a0a24498c.jpg" width="30%"/>
 
-### 일별 ToDo List 관리
-<img src="https://user-images.githubusercontent.com/38740455/96134689-4bd78c00-0f36-11eb-9934-e3ff4dd1af43.jpg" width="30%"/>
